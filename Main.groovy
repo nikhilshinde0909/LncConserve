@@ -27,6 +27,7 @@ if(reads_R2=="") fastqInputFormat=fastqFormatSingle
 
 codeBase = file(bpipe.Config.config.script).parentFile.absolutePath
 Liftover = codeBase + "/scripts/Liftover.py"
+ensembl_gtf2bed = codeBase + "ensembl_gtf2bed.py"
 
 load codeBase+"/tools.groovy"
 load codeBase+"/stages/fastp.groovy"
