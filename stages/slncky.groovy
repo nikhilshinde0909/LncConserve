@@ -7,14 +7,12 @@
 //Python 2.7 and slncky
 slncky_dir="slncky_out"
 
-ref_genome_bed = {
+prepare_annotations_bed = {
 	output.dir=slncky_dir
-	produce("Ref_genome.bed","Rel_ref_genome.bed"){
+	produce("Ref_genome.protein_coding.bed","Rel_ref_genome.protein_coding.bed"){
 	exec """
-	$gffread $annotation --bed -o ${output.dir}/temp.bed ;
-	cut -f1-12 ${output.dir}/temp.bed > $output1 && rm ${output.dir}/temp.bed ;
-	$gffread $annotation_related_species --bed -o ${output.dir}/temp1.bed ;
-        cut -f1-12 ${output.dir}/temp1.bed > $output2 && rm ${output.dir}/temp1.bed ;
+	$python3 $ensembl_gtf2bed $annotation Ref_genome.prefix.prefix ;
+ 	$python3 $annotation_related_species $annotation Ref_genome.prefix.prefix
 	"""
 	  }
 }
