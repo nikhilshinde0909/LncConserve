@@ -1,7 +1,7 @@
 /***********************************************************
  ** Stages run lnc RNA analysis with slncky with python 3
  ** Author: Nikhil Shinde <sd1172@srmist.edu.in>
- ** Last Update: 30/05/2023
+ ** Last Update: 30/09/2024
  *********************************************************/
 
 //Python 2.7 and slncky
