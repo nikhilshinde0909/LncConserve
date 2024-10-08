@@ -49,16 +49,16 @@ def gtf_to_bed(gtf_file, output_prefix):
                 noncoding.append(bed_entry)
 
     # Write to BED12 files
-    with open(f"{output_prefix}_protein_coding.bed", 'w') as f:
+    with open(f"{output_prefix}.protein_coding.bed", 'w') as f:
         f.writelines(protein_coding)
     
-    with open(f"{output_prefix}_snoRNA.bed", 'w') as f:
+    with open(f"{output_prefix}.snoRNA.bed", 'w') as f:
         f.writelines(snoRNA)
 
-    with open(f"{output_prefix}_miRNA.bed", 'w') as f:
+    with open(f"{output_prefix}.miRNA.bed", 'w') as f:
         f.writelines(miRNA)
 
-    with open(f"{output_prefix}_noncoding.bed", 'w') as f:
+    with open(f"{output_prefix}.noncoding.bed", 'w') as f:
         f.writelines(noncoding)
 
 # Define command-line arguments
@@ -72,4 +72,3 @@ output_prefix = sys.argv[2]
 
 # Run function
 gtf_to_bed(gtf_file, output_prefix)
-
