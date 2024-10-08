@@ -1,7 +1,7 @@
 /***********************************************************
  ** Stages to preform genome-guided assembly with Stringties
  ** Author: Nikhil Shinde <sd1172@srmist.edu.in>
- ** Last Update: 30/05/2023
+ ** Last Update: 03/10/2024
  *********************************************************/
 
 //Output directory
