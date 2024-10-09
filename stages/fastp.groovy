@@ -1,7 +1,7 @@
 /****************************************************************
  ** Stages to retieve quality trimming raw reads
  ** Author: Nikhil Shinde <sd1172@srmist.edu.in>
- ** Last Update: 30/10/2024
+ ** Last Update: 03/10/2024
  ****************************************************************/
 
 //Output directory
