@@ -1,6 +1,6 @@
 /***********************************************************
  ** Author: Nikhil Shinde <sd1172@srmist.edu.in>
- ** Last Update: 29/09/2024
+ ** Last Update: 03/10/2024
  *********************************************************/
 
 VERSION="1.00"
@@ -49,7 +49,7 @@ run_check = {
     doc "check that the data files exist"
     produce("checks_passed") {
         exec """
-            echo "Running lnc RNA analysis pipeline version $VERSION" ;
+            echo "Running lnc RNA conservation analysis pipeline version $VERSION" ;
 	    echo "Using ${bpipe.Config.config.maxThreads} threads" ;
             echo "Checking for the data files..." ;
 	    for i in $rRNAs $genome $annotation $inputs.fastq.gz ; 
