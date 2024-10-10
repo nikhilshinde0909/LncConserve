@@ -1,19 +1,19 @@
 /***********************************************************
  ** Stages run lncRNA analysis with slncky using Python 3
  ** Author: Nikhil Shinde <sd1172@srmist.edu.in>
- ** Last Update: 03/10/2024
+ ** Last Update: 30/09/2024
  *********************************************************/
 
 //Python 3 and slncky
 slncky_dir = "slncky_out"
 
 prepare_annotations_bed = {
-    output.dir = slncky_dir
-    if (liftover == "" && noncoding == "") {
-        produce("Ref_genome.protein_coding.bed", "Rel_ref_genome.protein_coding.bed") {
+	output.dir = slncky_dir
+	if (liftover == "" && noncoding == "") {
+        produce("Ref_genome.protein_coding.bed","Rel_ref_genome.protein_coding.bed") {
             exec """
-            $python3 $ensembl_gtf2bed $annotation Ref_genome.prefix.prefix ;
-            $python3 $annotation_related_species $annotation Ref_genome.prefix.prefix
+            $python3 $ensembl_gtf2bed $annotation $output1.prefix.prefix ;
+            $python3 $ensembl_gtf2bed $annotation_related_species $output2.prefix.prefix
             """
         }
     } else {
@@ -129,4 +129,4 @@ ortholog_search = {
 }
 
 slncky_run = segment { prepare_annotations_bed + fasta_index + prepare_Liftover + annotation_config + 
-	putative_lnc_npcts_bed + run_slncky + ortholog_search }
+    putative_lnc_npcts_bed + run_slncky + ortholog_search }
