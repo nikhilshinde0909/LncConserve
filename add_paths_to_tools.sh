@@ -17,7 +17,7 @@ python3_path=`which python3 2>/dev/null`
 # slncky
 source $Activate_path slncky
 python2_path=`which python 2>/dev/null`
-slncky_path=`which slncky 2>/dev/null`
+# slncky_path=`which slncky 2>/dev/null`
 
 # Add paths to tools.groovy
 echo 'adding paths to tools.groovy'
@@ -38,4 +38,4 @@ echo "" >> ./tools.groovy
 
 echo "// Path to python 2.7 and slncky" >> ./tools.groovy
 echo "python2=\"$python2_path\"" >> ./tools.groovy
-echo "slncky=\"$slncky_path\"" >> ./tools.groovy
+# echo "slncky=\"$slncky_path\"" >> ./tools.groovy
