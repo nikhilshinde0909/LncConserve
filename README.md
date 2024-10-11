@@ -68,3 +68,5 @@ Run following command and execute the steps for lncRNAs and NPCTs analysis
 ```
 bpipe run -n ${threads} ~/Path_to_LncConserve/Main.groovy data.txt
 ```
+
+## Thanks for using LncConseve !!
