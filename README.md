@@ -4,6 +4,10 @@ A pipeline for lncRNA identification and inter-species lncRNA conservation analy
 # Introduction
 Long non-coding RNA is the major class of non-coding RNA with lower expression than mRNAs, complex expression patterns, and low conservation. The present investigation aimed to develop an automated pipeline for lncRNA identification using RNA-seq and inter-species conservation analysis. The pipeline takes raw \*.fastq.gz, rRNA sequences (\*.fa) reference genome (\*.fa), and annotations (\*.gtf) for the species and related species. Also, we have provided additional scripts to download rRNA sequences, reference genomes, and annotations from Ensembl plants.
 
+<p align="center">
+  <img src="https://github.com/nikhilshinde0909/LncConserve/blob/main/LncConserve.png" width=50% height=25%>
+</p>
+
 # Implementation
 1. To execute the steps in the pipeline, download the latest release of LncConserve to your local system with the following command 
 ```
