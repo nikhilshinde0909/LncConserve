@@ -18,21 +18,17 @@ git clone https://github.com/nikhilshinde0909/LncConserve.git
 mamba env update --file LncConserve.yml
 ```
 
-4. Create conda environment for FEELnc with following commmand 
-```
-mamba create -n FEELnc -c bioconda feelnc 
-```
   
-5. Create environment for Slncky from the environment file 
+4. Create environment for Slncky from the environment file 
 ```
 mamba env create -f slncky.yml
 ```
 
-6. Run bash script named "add_paths_for_tools.sh" to add the path of conda environments and software in tools.groovy file
+5. Run bash script named "add_paths_for_tools.sh" to add the path of conda environments and software in tools.groovy file
 ```
 chmod +x add_paths_for_tools.sh && bash add_paths_for_tools.sh
 ```
-7. Prepare your inputs and data.txt in the working directory
+6. Prepare your inputs and data.txt in the working directory
 ```
 mkdir data
 Working directory
@@ -67,7 +63,7 @@ python Liftover.py 16 Sorghum_bicolor.dna.toplevel.fa Sbicolor Zea_mays.dna.topl
 ```
 
 This will produce protein-coding, non-coding, mirRNA, and snoRNA bed files for slncky. 
-8. Pipeline is ready for executaion \
+7. Pipeline is ready for executaion \
 Run following command and execute the steps for lncRNAs and NPCTs analysis 
 ```
 bpipe run -n ${threads} ~/Path_to_LncConserve/Main.groovy data/data.txt
