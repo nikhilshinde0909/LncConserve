@@ -45,7 +45,7 @@ prepare_Liftover = {
         produce(org_name + "to" + rel_sp_name + ".over.chain.gz") {
             exec """
             $python3 $Liftover $threads $genome $org_name $genome_related_species $rel_sp_name $distance ;
-            mv ${output.dir}/${org_name}.${org_name}.over.chain.gz $output
+            mv ${org_name}.${rel_sp_name}.over.chain.gz $output
             """
         }
     } else {
@@ -76,23 +76,23 @@ annotation_config = {
             """
         }
     } else {
-        from("Ref_genome.protein_coding.bed", "Ref_genome.noncoding.bed", "Ref_genome.miRNA.bed", "Ref_genome.snoRNA.bed", "Rel_ref_genome.protein_coding.bed", "Rel_ref_genome.noncoding.bed", "Rel_ref_genome.miRNA.bed", "Rel_ref_genome.snoRNA.bed", org_name + "to" + rel_sp_name + ".over.chain.gz") produce("annotation.config") {
+        from(org_name + "to" + rel_sp_name + ".over.chain.gz") produce("annotation.config") {
             exec """
             echo '>'$org_name >> $output ;
-            echo 'CODING='$input1 >> $output ;
+            echo 'CODING='${output.dir}'/Ref_genome.protein_coding.bed' >> $output ;
             echo 'GENOME_FA='$genome >> $output ;
             echo 'ORTHOLOG='$rel_sp_name >> $output ;
-            echo 'LIFTOVER='$input9 >> $output ;
-            echo 'NONCODING='$input2 >> $output ;
-            echo 'MIRNA='$input3 >> $output ;
-            echo 'SNORNA='$input4 >> $output ;
+            echo 'LIFTOVER='$input >> $output ;
+            echo 'NONCODING='${output.dir}'/Ref_genome.noncoding.bed' >> $output ;
+            echo 'MIRNA='${output.dir}'/Ref_genome.miRNA.bed' >> $output ;
+            echo 'SNORNA='${output.dir}'/Ref_genome.snoRNA.bed' >> $output ;
             echo '>'$rel_sp_name >> $output ;
-            echo 'CODING='$input5 >> $output ;
+            echo 'CODING='${output.dir}'/Rel_ref_genome.protein_coding.bed' >> $output ;
             echo 'GENOME_FA='$genome_related_species >> $output ;
             echo 'ORTHOLOG='$org_name >> $output ;
-            echo 'NONCODING='$input6 >> $output ;
-            echo 'MIRNA='$input7 >> $output ;
-            echo 'SNORNA='$input8 >> $output
+            echo 'NONCODING='${output.dir}'/Rel_ref_genome.noncoding.bed' >> $output ;
+            echo 'MIRNA='${output.dir}'/Rel_ref_genome.miRNA.bed' >> $output ;
+            echo 'SNORNA='${output.dir}'/Rel_ref_genome.snoRNA.bed' >> $output
             """
         }
     }
@@ -113,7 +113,7 @@ run_slncky = {
     from("annotation.config", "Putative-lnc-nptcs.bed") produce("slncky_out.lncs.info.txt") {
         exec """
         source $Activate slncky ;
-        $slncky -n $threads -c $input1 $input2 $org_name $slncky_options $output.prefix.prefix.prefix
+        $python2 $slncky -n $threads -c $input1 $input2 $org_name $slncky_options $output.prefix.prefix.prefix
         """
     }
 }
@@ -123,10 +123,10 @@ ortholog_search = {
     from("annotation.config", "Putative-lnc-nptcs.bed") produce(rel_sp_name + ".orthologs.top.txt") {
         exec """
         source ${Activate} slncky ;
-        $slncky -n $threads -c $input1 $input2 $slncky_ortho_options $org_name $output.prefix.prefix.prefix
+        $python2 $slncky -n $threads -c $input1 $input2 $slncky_ortho_options $org_name $output.prefix.prefix.prefix
         """
     }
 }
 
-slncky_run = segment { prepare_annotations_bed + fasta_index + prepare_Liftover + annotation_config + 
-    putative_lnc_npcts_bed + run_slncky + ortholog_search }
+slncky_run = segment { prepare_annotations_bed + fasta_index + prepare_Liftover + 
+	annotation_config + putative_lnc_npcts_bed + run_slncky + ortholog_search }
