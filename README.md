@@ -13,7 +13,7 @@ git clone https://github.com/nikhilshinde0909/LncConserve.git
 2. Download and install the latest release of Mambaforge from Git Hub [https://github.com/conda-forge/miniforge] to install the required software and tools.
 
 
-3. Once the Mambaforge is installed, Install the requrired softwares by updating base environment from LncRAnalyzer.yml file as follows
+3. Once the Mambaforge is installed, Install the required software by updating the base environment from LncConserve.yml file as follows
 ```
 mamba env update --file LncConserve.yml
 ```
