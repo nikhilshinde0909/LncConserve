@@ -7,7 +7,7 @@ Long non-coding RNA is the major class of non-coding RNA with lower expression t
 # Implementation
 1. To execute the steps in the pipeline, download the latest release of LncConserve to your local system with the following command 
 ```
-git clone 
+git clone https://github.com/nikhilshinde0909/LncConserve.git
 ```
 
 2. Download and install the latest release of Mambaforge from Git Hub [https://github.com/conda-forge/miniforge] to install the required software and tools.
