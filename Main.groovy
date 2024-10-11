@@ -1,6 +1,6 @@
 /***********************************************************
  ** Author: Nikhil Shinde <sd1172@srmist.edu.in>
- ** Last Update: 03/10/2024
+ ** Last Update: 29/05/2023
  *********************************************************/
 
 VERSION="1.00"
@@ -28,6 +28,7 @@ if(reads_R2=="") fastqInputFormat=fastqFormatSingle
 codeBase = file(bpipe.Config.config.script).parentFile.absolutePath
 Liftover = codeBase + "/scripts/Liftover.py"
 ensembl_gtf2bed = codeBase + "/scripts/ensembl_gtf2bed.py"
+slncky = codeBase + "/slncky/slncky.v1.0"
 
 load codeBase+"/tools.groovy"
 load codeBase+"/stages/fastp.groovy"
@@ -49,7 +50,7 @@ run_check = {
     doc "check that the data files exist"
     produce("checks_passed") {
         exec """
-            echo "Running lnc RNA conservation analysis pipeline version $VERSION" ;
+            echo "Running lnc RNA analysis pipeline version $VERSION" ;
 	    echo "Using ${bpipe.Config.config.maxThreads} threads" ;
             echo "Checking for the data files..." ;
 	    for i in $rRNAs $genome $annotation $inputs.fastq.gz ; 
@@ -65,8 +66,8 @@ run_check = {
 nthreads=bpipe.Config.config.maxThreads
 
 run { set_input + run_check + 
-	quality_trimming.using(threads: nthreads) +
-	unmapped_reads_to_rRNAs.using(threads: nthreads) +
+	//quality_trimming.using(threads: nthreads) +
+	//unmapped_reads_to_rRNAs.using(threads: nthreads) +
 	genome_guided_assembly +
 	annotation_compare.using(threads: nthreads) +
 	lnc_npc_transcript_selection.using(threads: nthreads) +
